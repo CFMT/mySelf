@@ -1,0 +1,125 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Responsive layout</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			color: black;
+		}
+		html,body{
+			height: 100%;
+			width: 100%;
+		}
+		#allWrap{
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		.header{
+			height: 50px;
+			background: #FF0000;
+			display: flex;
+		}
+		.headerLeft{
+			width: 150px;
+		}
+		.headerRight{
+			flex: 1;
+		}
+		.main{
+			flex: 1;
+			display: flex;
+		}
+		.aside{
+			width: 150px;
+			background: #006600;
+		}
+		.section{
+			flex: 1;
+			background: white;
+		}
+		.changAside{
+			display: inline-block;
+			height: 50px;
+			width: 100px;
+			line-height: 50px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="allWrap">
+		<div class="header">
+			<div class="headerLeft"></div>
+			<div class="headerRight">
+				<span class="changAside" onclick="changAside()">改变尺寸</span>
+			</div>
+		</div>
+		<div class="main">
+			<div class="aside"></div>
+			<div class="section">
+				innerHeight<span class="size"></span><br/>
+				innerWidth<span class="size"></span><br/>
+				outerHeight<span class="size"></span><br/>
+				outerWidth<span class="size"></span><br/>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="mypublic.js"></script>
+<script>
+	window.onload = function () {
+        getWindowSize()
+    }
+	window.onresize = function () {
+        getWindowSize()
+    }
+    const spanList = document.getElementsByClassName('size')
+	const headerLeft = document.getElementsByClassName('headerLeft')[0]
+    const aside = document.getElementsByClassName('aside')[0]
+	let flag = 'max'
+	//获取页面宽高，响应式改变侧边栏
+    function getWindowSize() {
+		let h = window.innerHeight
+		let w = window.innerWidth
+		let hh = window.outerHeight
+		let ww = window.outerWidth
+        spanList[0].innerHTML = h
+        spanList[1].innerHTML = w
+        spanList[2].innerHTML = hh
+        spanList[3].innerHTML = ww
+		if((w < 800) && (flag === 'max')){
+            startMove(headerLeft,{width: 30})
+            startMove(aside,{width: 30})
+            flag = 'min'
+		}else if((w > 800) && (flag === 'min')){
+            startMove(headerLeft,{width: 150})
+            startMove(aside,{width: 150})
+            flag = 'max'
+		}
+	}
+	//改变侧边栏宽度
+	function changAside() {
+	    if(flag === 'max'){
+            startMove(headerLeft,{width: 30})
+            startMove(aside,{width: 30})
+            flag = 'min'
+		}else if(flag === 'min'){
+            startMove(headerLeft,{width: 150})
+            startMove(aside,{width: 150})
+            flag = 'max'
+		}
+
+    }
+</script>
+</html>

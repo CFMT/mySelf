@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	
+	var lg = ctx.createLinearGradient(0,0,100,0);
+	lg.addColorStop(0, 'red')
+	lg.addColorStop(1, 'blue')
+	
+	ctx.fillStyle = lg;
+	ctx.strokeStyle = 'black';
+	
+	ctx.arc(100,100,60,0,Math.PI*2);
+	ctx.stroke();
+	ctx.fill();
+	ctx.save();
+	ctx.beginPath();
+	
+	ctx.bezierCurveTo(50, 110, 100, 190, 150 ,110 )
+	ctx.quadraticCurveTo(100, 130, 50, 110)
+	ctx.stroke();
+	ctx.beginPath();
+	
+	ctx.bezierCurveTo(70,90,80,60,90,90);
+	ctx.quadraticCurveTo(80,80,70,90);
+	ctx.stroke();
+	ctx.beginPath();
+	
+	ctx.bezierCurveTo(120,90,130,60,140,90);
+	ctx.quadraticCurveTo(130,80,120,90);
+	ctx.stroke();
+	
+	
+</script>
+</html>

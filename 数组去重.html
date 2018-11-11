@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	
+	
+	
+	<script type="text/javascript">
+		
+		var arr = [1,2,2,3,5,5,5,4,5,6,5,1,2,33,33,3,5];
+		//方法一
+		function removeRepeat( arr ){			
+			for( var i = 0; i < arr.length; i++ ){
+				for( var j = i+1; j < arr.length; j++ ){
+					if( arr[i] === arr[j] ){
+						arr.splice(j,1);
+						j--;
+					}
+				}
+			}
+			return arr;
+		}
+		// console.log( removeRepeat( arr ) );
+		//方法二
+		function removeRepeat2( arr ){
+			for( var i = 0; i < arr.length; i++ ){
+				if( arr.indexOf( arr[i] ) != i ){
+					arr.splice(i,1)
+					i--;					
+				}
+			}
+			return arr;
+		}
+		console.log( removeRepeat2( arr ) );
+		//方法三
+
+		
+	</script>
+</body>
+</html>
