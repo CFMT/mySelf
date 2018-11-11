@@ -1,0 +1,54 @@
+<!DOCTYPE html>	
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			ul {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				
+			}
+
+			  /*画3个圆代表红绿灯*/
+
+			  ul >li {
+				  width: 40px;
+				  height: 40px;
+				  border-radius:50%;
+				  opacity: 0.2;
+				  display: inline-block;
+			  }
+
+			  /*执行时改变透明度*/
+
+			 /* ul.red >#red, 
+			  ul.green >#green,
+			  ul.yellow >#yellow{
+				  opacity: 1.0;
+			  }*/
+
+			  /*红绿灯的三个颜色*/
+
+			  #red {background: red;}
+
+			  #yellow {background: yellow;}
+
+			  #green {background: green;}
+						
+				
+		</style>
+	</head>
+	<body>
+		<ul id="traffic" class="">
+		  <li id="green"></li>
+		  <li id="yellow"></li>
+		  <li id="red"></li>
+		</ul>
+		
+	</body>
+</html>
