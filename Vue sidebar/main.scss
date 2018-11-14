@@ -1,0 +1,15 @@
+@import '@/lib/reset.scss';
+html,body{
+  height: 100%;
+  width: 100%;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
