@@ -87,99 +87,96 @@ function pz(d1,d2){
 	}
 }
 
-
-
-
 //  变速运动函数、、、、、、、、、、、、、、、、
 //变换选项函数
-	function startMove(obj,json,callback){
-		clearInterval(obj.timer);
-		obj.timer = setInterval(function(){
-			var flag = true;//假设值为true时   所有运动结束了  可以停止定时器
-			for( var attr in json ){
-				//获取实际内容样式值
-				var current;
-				if( attr == "opacity" ){
-					current =parseFloat( getStyle(obj,attr) )*100 ;
-				}else if( attr == "zIndex" ){
-					current =parseInt( getStyle(obj,attr) ) ;
-				}else{
-					current =parseInt( getStyle(obj,attr) ) ;
-				}
-				var speed = (json[attr]-current)/10;
-				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-				if( current != json[attr] ){
-					//如果没有达到目标值  就关闭开关变量为false
-					flag = false;
-				}
-				//设置样式值  
-				if( attr == "opacity" ){
-					obj.style.opacity = (current + speed)/100;
-				}else if( attr == "zIndex" ){
-					obj.style.zIndex = json[attr];
-				}else{
-					obj.style[attr] = current + speed + "px";
-				}
+function startMove(obj,json,callback){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		var flag = true;//假设值为true时   所有运动结束了  可以停止定时器
+		for( var attr in json ){
+			//获取实际内容样式值
+			var current;
+			if( attr == "opacity" ){
+				current =parseFloat( getStyle(obj,attr) )*100 ;
+			}else if( attr == "zIndex" ){
+				current =parseInt( getStyle(obj,attr) ) ;
+			}else{
+				current =parseInt( getStyle(obj,attr) ) ;
 			}
-		
-			//循环结束后  如果flag值为true   停止定时器
-			if( flag ){
-				clearInterval(obj.timer);	
-				//上移动作完成  开始进入下一个动作
-				// 实现下一个动作代码
-				if( callback ){//判断如果存在下一个动作  就执行
-					callback();
-				}
+			var speed = (json[attr]-current)/10;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if( current != json[attr] ){
+				//如果没有达到目标值  就关闭开关变量为false
+				flag = false;
 			}
-		},30)
-	}
- 
-	 //获取样式函数
-	function getStyle(obj,attr){
-	 	return window.getComputedStyle?window.getComputedStyle(obj,false)[attr]:obj.currentStyle[attr]; 
-	}
-	 
-
-
-	//ajax函数
-	function getajax(url,callback,data){
-		var ajax = null;
-		ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
-		if(data){
-			url = url + "?" + data;
+			//设置样式值  
+			if( attr == "opacity" ){
+				obj.style.opacity = (current + speed)/100;
+			}else if( attr == "zIndex" ){
+				obj.style.zIndex = json[attr];
+			}else{
+				obj.style[attr] = current + speed + "px";
+			}
 		}
-		ajax.open("get",url);
+
+		//循环结束后  如果flag值为true   停止定时器
+		if( flag ){
+			clearInterval(obj.timer);	
+			//上移动作完成  开始进入下一个动作
+			// 实现下一个动作代码
+			if( callback ){//判断如果存在下一个动作  就执行
+				callback();
+			}
+		}
+	},30)
+}
+ 
+ //获取样式函数
+function getStyle(obj,attr){
+	return window.getComputedStyle?window.getComputedStyle(obj,false)[attr]:obj.currentStyle[attr]; 
+}
+
+
+
+//ajax函数
+function getajax(url,callback,data){
+	var ajax = null;
+	ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
+	if(data){
+		url = url + "?" + data;
+	}
+	ajax.open("get",url);
+	ajax.send();
+	ajax.onreadystatechange = function(){
+		if(ajax.status == 200 && ajax.readyState == 4){
+			callback( ajax.responseText );
+		}
+	}
+}
+	
+	
+//ajax promise对象函数
+function getajaxpromise(url,data){
+	if(data){
+		url = url + "?" + data;
+	}
+	var pro = new Promise(function(success,failed){
+		var ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
+		ajax.open("GET",url);
 		ajax.send();
 		ajax.onreadystatechange = function(){
-			if(ajax.status == 200 && ajax.readyState == 4){
-				callback( ajax.responseText );
-			}
+			if(ajax.status = 200 && ajax.readyState == 4){
+				success( ajax.responseText );
+			}									
 		}
-	}
-	
-	
-	//ajax promise对象函数
-	function getajaxpromise(url,data){
-		if(data){
-			url = url + "?" + data;
-		}
-		var pro = new Promise(function(success,failed){
-			var ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
-			ajax.open("GET",url);
-			ajax.send();
-			ajax.onreadystatechange = function(){
-				if(ajax.status = 200 && ajax.readyState == 4){
-					success( ajax.responseText );
-				}									
-			}
-			setTimeout(function(){
-				failed("请求失败");
-			},3000)
-	
-		});	
-	return pro;			
-	}
-	
+		setTimeout(function(){
+			failed("请求失败");
+		},3000)
+
+	});	
+return pro;			
+}
+
 	
 	//jQuery拖拽插件
 //	$.fn.extend({
@@ -205,14 +202,10 @@ function pz(d1,d2){
 //			})
 //		}
 //	})
-	/////////////
-	
-	
-	
-	
-	
-	//  value值  类型是一个  对象
-	//存取cookie
+
+
+//  value值  类型是一个  对象
+//存取cookie
 function setCookie(key,value,days){
 	var now = new Date();
 	now.setTime(now.getTime() + days*24*60*60*1000 ) 
@@ -240,8 +233,7 @@ function getCookie(key){
 }
 function removeCookie(key){
 	setCookie(key,"",-1);
-}
-	
+}	
 	
 //判断素数
 function isPrimerNumber( m ){
@@ -330,19 +322,24 @@ function arrayRRFive(){
 	return drr;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ // 时间段 秒格式化为 时分秒（00:00:00）
+function secToTime (cellValue) {
+    if ((cellValue !== 0) && !cellValue) {
+      return 'wrong'
+    }
+    let t = ''
+    if (cellValue >= 0) {
+      let hour = Math.floor(cellValue / 3600)
+      let min = Math.floor(cellValue / 60) % 60
+      let sec = cellValue % 60
+      hour < 10 ? t += '0' + hour + ':' : t += hour + ':'
+      min < 10 ? t += '0' + min + ':' : t += min + ':'
+      sec < 10 ? t += '0' + sec : t += sec
+    } else {
+      t = 'wrong'
+    }
+    return t
+  }
 
 
 
