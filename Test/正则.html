@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <div style="display: flex;width: 210px;height: 210px">
+        <div style="height: 100px;flex: 1;"></div>
+        <div style="width: 200px;height: 100px"></div>
+        <div style="width: 400px;height: 100px"></div>
+    </div>
+</body>
+<script>
+    // var regex = /[abc]{2,4}/
+    // var string = "acbc"
+    // console.log( regex.test(string) )
+
+    // var regex = /ab{3,5}c/
+    // var string = "abc abbc abbbc abbbbc abbbbbc abbbbbbc"
+    // console.log( string.match(regex) )
+
+    var regex = /\d/g
+    var string = "123 1234 12345 123456"
+    console.log( string.match(regex) )
+</script>
+</html>

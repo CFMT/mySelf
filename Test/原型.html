@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型链 原型</title>
+</head>
+<style>
+    .box{
+        width: 200px;
+        height: 200px;
+        background: black;
+        padding: 50px;
+        border: 10px solid #b7d2ff;
+        margin: 30px;
+    }
+</style>
+<body>
+<div class="box"></div>
+<input id="myCar" list="cars" />
+<datalist id="cars">
+    <option value="BMW">
+    <option value="Ford">
+    <option value="Volvo">
+</datalist>
+<select>
+    <option>56615</option>
+    <option>68431</option>
+    <option>1232</option>
+    <option>634</option>
+</select>
+
+</body>
+<script>
+
+   // var one = {x:1}
+   // var two = ["'1','2','3'"]
+//    var too = new Object()
+//    var three = new Object({y:2})
+//    console.log(one)
+//    console.log(too)
+//    console.log(three)
+//
+//    console.log(one.__proto__)
+//    console.log(Object.prototype)
+
+
+    // var iNum = 88;
+    // console.log(two.toString());
+    // alert(two.toString());
+
+   function Person(name,age){
+       this.name=name;
+       this.age=age;
+   }
+   Person.prototype.study=function(){
+       return this.name + "学习"
+   }
+   var p1 =new Person("张三",20)
+   // p1.study = function(){
+   //     return this.name + "学习"
+   // }
+   console.log(p1)
+   function Student(class_,name,age){
+       this.class_=class_;
+       this.name=name;
+       this.age=age;
+   }
+   Student.prototype=new Person();
+   var s1 =new Student("二班","李大人",16);
+   console.log(s1)
+   console.log(s1.name,s1.age,s1.class_,s1.study());
+
+
+</script>
+</html>

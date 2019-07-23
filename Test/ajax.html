@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    var url = "https://plugins.kancloud.cn/api/plugin/info?book=26419&name=theme-default,highlight";
+    // var xmlHttp;
+    // function createxmlHttpRequest(){
+    //     if(window.ActiveXObject){
+    //         xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+    //     }else if(window.XMLHttpRequest)
+    //         xmlHttp=new XMLHttpRequest();
+    // }
+    // createxmlHttpRequest();
+    // xmlHttp.open("GET",url);
+    // xmlHttp.send();
+    // xmlHttp.onreadystatechange = function (event) {
+    //     console.log('555555555555555555');
+    //     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+    //         console.log('success');
+    //         console.log(event);
+    //         console.log( typeof xmlHttp.responseText);
+    //     }
+    // }
+
+    // getajaxpromise(url).then((data) => {
+    //     console.log(data)
+    // }, (err) => {
+    //     console.log(err)
+    // })
+
+    getajaxpromise(url).then((data) => {
+        console.log(data)
+    }).catch((err) => {
+        console.log(err)
+    })
+
+
+
+    // function getajax(url,callback,data){
+    //     var ajax = null;
+    //     ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
+    //     if(data){
+    //         url = url + "?" + data;
+    //     }
+    //     ajax.open("get",url);
+    //     ajax.send();
+    //     ajax.onreadystatechange = function(){
+    //         if(ajax.status == 200 && ajax.readyState == 4){
+    //             callback( ajax.responseText );
+    //         }
+    //     }
+    // }
+
+    function getajaxpromise(url,data){
+        if(data){
+            url = url + "?" + data;
+        }
+        var pro = new Promise(function(success,failed){
+            var ajax = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft XMLHTTP");
+            ajax.open("GET",url);
+            ajax.send();
+            ajax.onreadystatechange = function(){
+                if(ajax.status = 200 && ajax.readyState == 4){
+                    success( ajax.responseText );
+                }
+            }
+            setTimeout(function(){
+                failed("请求失败");
+            },350)
+
+        });
+        return pro;
+    }
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var p1 = Promise.resolve(1)
+    var p2 = Promise.resolve(p1)
+    var p3 = new Promise(function (resolve, reject) {
+        resolve(1)
+    })
+    var p4 = new Promise(function (resolve, reject) {
+        console.log('success')
+        resolve(p1)
+    })
+    console.log(p1 === p2)
+    console.log(p1 === p3)
+    console.log(p2 === p3)
+    p4.then(function (value) {
+        console.log('p4=' + value)
+    })
+    p2.then(function (value) {
+        console.log('p2=' + value)
+    })
+    p1.then(function (value) {
+        console.log('p1=' + value)
+    })
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

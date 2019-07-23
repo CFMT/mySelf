@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let a = 20;
+        // let b = a;
+        // console.log(b)
+        // b = 30;
+        // console.log(b)
+        // console.log(a)
+        //
+        // console.log('----------------------')
+        // let m = { a: 10, b: 20 }
+        // let n = m;
+        // console.log(n)
+        // n.a = 15;
+        // console.log(n)
+        // console.log(m)
+
+        var ddobj = {
+            地图数据: {
+                融合删除元素: 'shift+2',
+                隐藏显示行政区划:'c',
+                隐藏显示地图特征道路:'r',
+                隐藏显示地图特征绿地:'g',
+                隐藏显示地图特征水系:'t',
+                隐藏显示设施点:'e',
+                隐藏显示点门牌:'q',
+                隐藏显示功能面:'z',
+                隐藏显示图框:'m',
+            },
+            轨迹点: {
+                普通标识点: 'shift+z',
+                全部轨迹点: 'shift+q',
+                作业内容: 'shift+n',
+                图片识别轨迹设置: '7',
+                路口组合标识点: 'shift+d',
+                非路口组合标识点: 'shift+c',
+                限速标识点: 'shift+w',
+                交通限制标识点: 'shift+e',
+                轨迹起点: 'alt+shift+q',
+                轨迹终点: 'alt+shift+z',
+            },
+            属性标注: {
+                道路属性标注道路等级:'k',
+                道路属性标注道路限速:'s',
+                道路属性标注车道数:'l',
+                道路属性标注功能等级:'a',
+                道路属性标注禁止穿行:'j',
+                道路属性标注道路类型:'y',
+                道路属性标注四维ID:'u',
+                道路属性标注标注名称:'n',
+                道路属性标注供用信息:'i',
+                道路属性标注收费信息: 'h',
+                OSMID: 'shift+o',
+                详细开发区域: 'shift+7',
+                道路幅宽: 'shift+f',
+                速度限制等级: 'shift+s',
+                铺设状态: 'p',
+            },
+            背景: {
+                高德地图: 'shift+8',
+                腾讯地图: 'alt+t',
+                百度地图: 'shift+9',
+                腾讯卫星: 'shift+4',
+                谷歌卫星: 'shift+5',
+                高德卫星: 'shift+6',
+                四维数据: 'alt+s',
+                本周数据挖掘: 'shift+1',
+                上周数据挖掘: 'shift+0',
+                街景与街景窗口: 'shift+3',
+            },
+            工具: {
+                为选中的对象添加关系:'9',
+                打断:'x',
+                测量工具: '8',
+                移动对象到不同的位置:'5',
+                把一条线拉直:'6',
+                任务删除元素:'shift+backspace',
+                闭合区域环化:'o',
+                断开:'d',
+                旋转:'0',
+                添加点:'1',
+                添加线:'2',
+                添加面:'3',
+                撤销:'ctrl+z',
+                恢复:'ctrl+x',
+                保存:'ctrl+s',
+            },
+            列表: {
+                错误列表: 'ctrl+b',
+            },
+            关系: {
+            },
+            操作: {
+            },
+        };
+
+        let shortset = JSON.parse( JSON.stringify( ddobj ) );
+        // for(let sub in shortset){
+        //     let ss = shortset[sub]
+        //     for (let shortcut in ss) {
+        //         ss[shortcut] = null;
+        //     }
+        // }
+        for(let shortcut in shortset){
+            shortset[shortcut] = null;
+        }
+        console.log(shortset)
+        console.log(ddobj)
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

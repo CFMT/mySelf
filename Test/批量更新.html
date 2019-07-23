@@ -1,0 +1,312 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:  0;
+            padding:  0;
+        }
+        html,body{
+            height:  100%;
+            width:  100%;
+        }
+        .content_wrap{
+            width:  60%;
+            margin:  20px auto;
+            padding:  10px;
+        }
+        .pp{
+            height:  25px;
+            line-height:  25px;
+            font-size:  20px;
+            background:  #225C98;
+            text-indent:  20px;
+            margin:  10px 0 10px 0;
+        }
+        .subp{
+            height:  20px;
+            line-height:  20px;
+            padding-left:  40px;
+            font-size:  14px;
+            margin:  20px 0;
+        }
+        .kd1{
+            float:  left;
+            height:  100%;
+            width:  30%;
+        }
+        .kd2, .kd3{
+            float:  left;
+            height:  100%;
+        }
+        .kd3{
+            width:  50%;
+            overflow:  auto;
+            overflow-x:  auto;
+        }
+        /*.kd3: : -webkit-scrollbar {*/
+            /*width:  0 !important*/
+        /*}*/
+        /*.kd3{*/
+            /*-ms-overflow-style:  none*/
+        /*}*/
+        /*.kd3{*/
+            /*overflow:  -moz-scrollbars-none*/
+        /*}*/
+        .search_wrap{
+            width:  60%;
+            margin:  20px auto 0;
+        }
+        .detail{
+            font-size:  16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search_wrap">
+        <input class="search_ipt" type="text" placeholder="请输入" /><button onclick="searchFn()">搜索</button>
+        <div class="detail"></div>
+    </div>
+    <div class="content_wrap">
+        <!--<table class="">-->
+            <!---->
+        <!--</table>-->
+
+    </div>
+    <script>
+
+        let obj = {
+            '线绘制': {
+                '高速路':  'motorway',
+                '都市高速路':  'trunk',
+                '国道':  'primary',
+                '省道':  'secondary',
+                '县道':  'tertiary',
+                '乡村道路':  'residential',
+                '其他道路':  'service',
+                '九级辅路':  'road',
+                '人行道':  'footway',
+                '航线':  'terms',
+                '自行车专用通道':  'bicycle',
+                '人渡':  'boat',
+                '索道':  'cableway'
+            },
+            '点绘制': {
+                '点门牌':  ['doorplate: 小区门牌', 'ban: 楼栋号', 'unitdoor: 单元门'],
+                '居民住宿':  'region: 小区',
+                '学校':  ['high: 中学', 'primary: 小学', 'nursery: 幼儿园/托儿所', 'college: 大专院校', 'secondary: 中专/职高/技校', 'teach_build: 教学楼', 'department: 院/系', 'apply: 学校报名处', 'drive: 驾校', 'exam: 考试中心'],
+                '医疗机构':  ['hospital: 医院', 'general: 综合医院', 'specialist: 专科医院', 'clinics: 私人诊所', 'facility: 内部医疗设施', 'emergency: 社区医疗', 'community: 急诊', 'tooth: 牙科诊所', 'examination: 体检机构'],
+                '公司':  ['company: 公司', 'industrial: 厂矿企业', 'area: 工业园', 'conference: 会议中心、展览中心', 'train: 培训中心', 'build: 大厦', 'business: 商务中心/会馆', 'complex: 商业综合体', 'other: 其他单位'],
+                '景区':  ['resort: 景区', 'park: 公园', 'street: 街心公园', 'square: 广场', 'amusement: 游乐园', 'zoo: 动物园', 'garden: 植物园', 'aquarium: 水族馆'],
+                '商场':  ['store: 百货商城/百货商店', 'convenience: 便利店','shop: 超市'],
+                '客货运输':  ['station: 车站', 'train: 火车站', 'arrive: 火车站出发到达', 'bus: 客运汽车站', 'subway: 地铁站出入口', 'main_subway: 地铁站主点', 'maglev: 磁悬浮出入口', 'port: 港口/码头', 'airplane: 机场/候机楼', 'departure: 到达/出发口', 'gate: 机场到达/出发门', 'airport: 机场城市候机楼', 'logistics: 物流/快运']
+            },
+            '面绘制': {
+                '绿地':  ['house: 高尔夫球场', 'park: 公园', 'forest: 树林林地', 'land: 机场跑道', 'commercial: 机场', 'meadow: 绿化带'],
+                '水系':  ['lake: 湖泊', 'sea-line: 海岸线', 'double-line: 双线河', 'limn: 湖沼', 'harbour: 港湾'],
+                '功能面':  ["region: 小区", "school: 大学", "hospital: 医院", "industrial: 工业区", "resorts: 景区", "shop: 购物中心", "business: 商务区", "train: 火车站", "commercial: 商业区", "leisure: 休闲娱乐", "exhibition: 会展中心", "cultural: 文化场馆", "uppark: 地上停车场", "underpark: 地下停车场", "special: 特色区域", "line: 功能面假想线", "bus: 公交枢纽站", "bus_station: 长途汽车客运站", "football: 足球场", "park: 停车位", "tennis: 网球场", "volleyball: 排球场", "basketball: 篮球场", "athletic: 田径场", "badminton: 羽毛球场", "sport: 体育场范围线", "imaginary: 假想线", "square: 广场"],
+            },
+            '关系创建': {
+                '禁止信息':  'forbid',
+                '车道信息':  'Ln',
+                'IC语音':  'IC',
+                '方面名称语音':  'Dr',
+                '模式图及放大图':  'Br',
+                '3D模式图':  'Dm',
+                '分岔口提示':  'CrossTip',
+                '限速标牌':  'RestrictMark',
+                '坡度':  'Slope',
+                '顺行':  'straight',
+                '双通路禁止掉头':  'SingleLinkCond',
+                '实时交通信息':  'RTIC',
+                '标牌':  'TrfcSign',
+                '路口':  'intersection',
+                '大门':  'door',
+                '收费站':  'toll',
+                '红绿灯':  'traffic_light',
+                '高度信息':  'z_level'
+            },
+            '道路属性': {
+                '名称':  '',
+                '道路类型':  'RoadType',
+                '单行线':  'oneway',
+                '车道数':  'RoadWidth',
+                '限速':  'Speed',
+                '功能等级':  'FuncClass',
+                '供用信息':  'Const_St',
+                '禁止穿行':  'Through',
+                '铺设状态':  'Road_Cond',
+                '收费设置':  'Toll',
+                '车辆类型':  'Vehcl_Type',
+                '来源':  'source',
+                '城市标识':  'Uflag',
+                '特殊交通类型':  'Special',
+                '高架路':  'Elevated',
+                '跨线天桥地道':  'Structure',
+                '众包确认':  'confirm',
+                '自行车通行':  'bicycle',
+                '详细开发区域':  'DetailCity',
+                '车道数等级':  'LaneNum',
+                '限制速度等级':  'SpeedClass',
+                '幅宽':  'Width',
+                '总车道数':  'LaneNumSum'
+            },
+            '道路类型': {
+                '调头口':  'u-turn',
+                '上下线分离':  'dual-Carriageway',
+                '主辅路出入口':  'entrance/exit-link',
+                '区域内道路':  'structure-link',
+                '辅路':  'parallel',
+                '提前右转':  'right-turn',
+                '提前左转':  'left-turn',
+                'IC':  'ic',
+                'JCT':  'jct',
+                '匝道':  'ramp',
+                '移动式桥':  'movebridge',
+                '环岛':  'roundabout',
+                '隧道':  'tunnel',
+                '服务区':  'sa',
+                '停车区':  'pa',
+                '步行街':  'walking-street',
+                '交叉口内link':  'link-intersection',
+                '未定义交通区域':  'eta-link',
+                'poi连接路':  'service-link',
+                '公交专用道':  'bus-link',
+                '风景路线':  'landscape-route',
+                '停车位引导':  'park-link',
+                '虚拟连接':  'fictitious-link',
+                '入口连接路':  'entrance/exit-park',
+                '全封闭道路':  'Controlled-roads',
+                '固定桥':  'bridge'
+            },
+            '点属性': {
+                '小区名':  'buildingname',
+                '道路名':  'roadname',
+                '点门牌':  'housenumber',
+                '众包确认':  'confirm',
+                '楼栋号':  'BuildingUnitName',
+                '单元门':  'UnitName',
+                '名称':  'NameType',
+                '点属性':  'type',
+                '主门':  'preferred',
+                '旅游景点星级':  'prior'
+            },
+            '面属性': {
+                '名称':  '',
+                '等级':  '',
+                '内业核实':  'confirm'
+            },
+            '行为功能': {
+                '撤销':  'undo',
+                '返回':  '',
+                '保存':  'save'
+            },
+            '辅助功能': {
+                '坐标定位':  'pick',
+                '全视图':  'geolocate',
+                '测距':  'ruler',
+                '前一视图':  'view.pre',
+                '后一视图':  'view.next',
+                '放大':  'zoom.in',
+                '缩小':  'zoom.out'
+            }
+        }
+        let detail = document.getElementsByClassName('detail')[0]
+
+        searchFn = () => {
+
+            let ipt = document.getElementsByClassName('search_ipt')[0]
+            let val = ipt.value
+            detail.innerHTML = ''
+            if(!val){
+                alert('查询内容不能为空！！！')
+                return
+            }
+
+            let flag = true
+
+            for ( let k in obj ) {
+                for ( let m in obj[k]) {
+                    if ( m === val ) {
+                        let v = obj[k][m]
+                        let t = typeof v
+                        if ( t === 'string') {
+                            detail.innerHTML = obj[k][m]
+                        } else {
+                            v.map((item) => {
+                                detail.innerHTML += item + '<br>'
+                            })
+                        }
+
+                        flag = false
+                    }
+                }
+            }
+
+            flag && alert('抱歉，您查询的内容不存在。')
+
+        }
+
+        let wrap = document.getElementsByClassName('content_wrap')[0]
+
+        for ( let i in obj ) {
+
+            let pp = document.createElement('p')
+            pp.className = 'pp'
+            pp.innerHTML = i
+            wrap.append(pp)
+
+            let subObj = obj[i]
+            for ( let j in subObj ) {
+                let subp = document.createElement('p')
+                subp.className = 'subp'
+                wrap.append(subp)
+
+                let kd1 = document.createElement('div')
+                kd1.className = 'kd1'
+                kd1.innerHTML = j
+                subp.append(kd1)
+
+                let v = subObj[j]
+                let t = typeof v
+                if (t === "string") {
+                    let kd2 = document.createElement('div')
+                    kd2.className = 'kd2'
+                    kd2.innerHTML = v
+                    subp.append(kd2)
+                } else {
+                    let kd3 = document.createElement('div')
+                    kd3.className = 'kd3'
+                    subp.append(kd3)
+                    subp.style.height = '100px'
+
+                    v.map((item) => {
+                        let kdp = document.createElement('p')
+                        kdp.innerHTML = item
+                        kd3.append(kdp)
+                    })
+                }
+            }
+        }
+
+
+
+        console.log('----66666---')
+        let ff = {
+            'trackStart': '轨迹起点',
+            'trackEnd': '轨迹终点',
+            'Vehcl_Type': '车辆类型',
+            'workCont': '作业内容',
+        }
+        for (let gg in ff) {
+            console.log(ff.length)
+            console.log(gg, ff[gg])
+        }
+
+    </script>
+</body>
+</html>

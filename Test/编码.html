@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str = '娴嬭瘯涔辩爜闂??';
+    var tt = '';
+    for(var i = 0; i < str.length; i++){
+        tt += str.charCodeAt(i)
+    }
+    console.log(tt)
+
+</script>
+<script>
+    var str = '吼快乐建立吼哦kijoi'
+    var regexAstralSymbols = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+    function countSymbols(value) {
+        return value
+            .replace(regexAstralSymbols, '_')
+            .length;
+    }
+    function sliceSymbols(value, limit) {
+        var output = [];
+        var index = 0;
+        var oldStr = value;
+        value = value.replace(regexAstralSymbols, function (input, offset, match) {
+            if (offset > index) {
+                output = output.concat(match.slice(index, offset).split(""));
+            }
+            index = offset + input.length;
+            return "";
+        });
+        if( index < oldStr.length  ) {
+            output = output.concat(oldStr.slice(index, oldStr.length).split(""));
+        }
+        return output.slice(0, limit).join("");
+    }
+   sliceSymbols(str,countSymbols(str));
+
+</script>
+</html>

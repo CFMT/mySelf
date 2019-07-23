@@ -1,0 +1,153 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<!--<script>-->
+    <!--var loadXML = function(xmlString){ //构建xmldoc对象-->
+
+        <!--var xmlDoc=null;-->
+
+        <!--if(window.DOMParser)  //IE9+,FF,webkit-->
+        <!--{-->
+            <!--try{-->
+
+                <!--domParser = new  DOMParser();-->
+                <!--xmlDoc = domParser.parseFromString(xmlString, 'text/xml');-->
+            <!--}catch(e){-->
+            <!--}-->
+        <!--}-->
+        <!--else if(!window.DOMParser && window.ActiveXObject)-->
+        <!--{   //window.DOMParser 判断是否是非ie浏览器-->
+            <!--var xmlDomVersions = ['MSXML2.DOMDocument','Microsoft.XMLDOM'];-->
+            <!--for(var i=0;i<xmlDomVersions.length;i++){-->
+                <!--try{-->
+                    <!--xmlDoc = new ActiveXObject(xmlDomVersions[i]);-->
+                    <!--xmlDoc.async = false;-->
+                    <!--xmlDoc.loadXML(xmlString); //loadXML方法载入xml字符串-->
+                    <!--break;-->
+                <!--}catch(e){-->
+                    <!--continue;-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+        <!--else{-->
+            <!--return null;-->
+        <!--}-->
+
+        <!--return xmlDoc;-->
+    <!--}-->
+
+    <!--var datasource = `<?xml version="1.0" encoding="utf-8" ?>-->
+        <!--<bookstore>-->
+            <!--<book id="No1">-->
+                <!--<title>An Introduction to XML</title>-->
+                <!--<author>Chunbin</author>-->
+                <!--<year>2010</year>-->
+                <!--<price>98.0</price>  　　-->
+            <!--</book>-->
+            <!--<book id="No2">-->
+                <!--<title>The Performance of DataBase</title>-->
+                <!--<author>John</author>-->
+                <!--<year>1996</year>-->
+                <!--<price discount='7' data='8'>56.0</price>-->
+            <!--</book>-->
+        <!--</bookstore>`;-->
+
+    <!--var xmlDoc = loadXML(datasource);-->
+    <!--if(xmlDoc)  //xml的解析和html doc几乎完全相同，可以使用 xmlDoc.getElementById(),xmlDoc.getElementsByTagName()，xmlDoc.getElementsByClassName-->
+    <!--{-->
+        <!--var books= xmlDoc.getElementsByTagName('book');-->
+        <!--var book = xmlDoc.getElementById('No2');-->
+
+        <!--if(books)-->
+        <!--{-->
+            <!--for(var i=0;i<books.length;i++)-->
+            <!--{-->
+                <!--var title = books[i].getEelementsByTagName('title')[0].firstChild.nodeValue; //确实有点长，因为-->
+                <!--var author = books[i].getEelementsByTagName('author')[0].innerHTML;//变短点-->
+                <!--var year = books[i].getEelementsByTagName('year')[0].innerHTML; //或者这样-->
+                <!--var price = Number(books[i].getEelementsByTagName('price')[0].innerHTML);-->
+
+                <!--//有值了，下一步不是我的事了-->
+            <!--}-->
+
+            <!--//获取属性使用 attributes,得到的是nodevaluemap-->
+            <!--var attrs = book.attributes;-->
+
+            <!--for(var i=0;i<attrs.length;i++)-->
+            <!--{-->
+                <!--var attr = attrs[i];-->
+                <!--var attr_name = attr.name;-->
+                <!--var attr_value =  attr.value;-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+    <!---->
+
+<!--</script>-->
+
+<script>
+    // Changes XML to JSON
+    function xmlToJson(xml) {
+        // Create the return object
+        var obj = {};
+        if (xml.nodeType == 1) { // element
+            // do attributes
+            if (xml.attributes.length > 0) {
+                obj["@attributes"] = {};
+                for (var j = 0; j < xml.attributes.length; j++) {
+                    var attribute = xml.attributes.item(j);
+                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                }
+            }
+        } else if (xml.nodeType == 3) { // text
+            obj = xml.nodeValue;
+        }
+        // do children
+        if (xml.hasChildNodes()) {
+            for(var i = 0; i < xml.childNodes.length; i++) {
+                var item = xml.childNodes.item(i);
+                var nodeName = item.nodeName;
+                if (typeof(obj[nodeName]) == "undefined") {
+                    obj[nodeName] = xmlToJson(item);
+                } else {
+                    if (typeof(obj[nodeName].length) == "undefined") {
+                        var old = obj[nodeName];
+                        obj[nodeName] = [];
+                        obj[nodeName].push(old);
+                    }
+                    obj[nodeName].push(xmlToJson(item));
+                }
+            }
+        }
+        return obj;
+    };
+
+    var datasource = `<ALEXA VER="0.9" URL="davidwalsh.name/" HOME="0" AID="=">
+        <SD TITLE="A" FLAGS="" HOST="davidwalsh.name">
+        <TITLE TEXT="David Walsh Blog :: PHP, MySQL, CSS, Javascript, MooTools, and Everything Else"/>
+        <LINKSIN NUM="1102"/>
+        <SPEED TEXT="1421" PCT="51"/>
+        </SD>
+        <SD>
+        <POPULARITY URL="davidwalsh.name/" TEXT="7131"/>
+        <REACH RANK="5952"/>
+        <RANK DELTA="-1648"/>
+        </SD>
+        </ALEXA>`
+
+    var jjj = xmlToJson(datasource)
+
+    console.log(jjj)
+
+
+
+</script>
+</html>

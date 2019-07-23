@@ -1,0 +1,213 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    let urlType = [
+        {
+            label: 'url_query_box',
+            key: 1,
+            value: '矢量瓦片'
+        },
+        {
+            label: 'url_search_onsite',
+            key: 2,
+            value: '搜索'
+        },
+        {
+            label: 'url_get_node',
+            key: 3,
+            value: '获取点'
+        },
+        {
+            label: 'url_get_way',
+            key: 4,
+            value: '获取线'
+        },
+        {
+            label: 'url_get_nodes',
+            key: 5,
+            value: '批量获取点'
+        },
+        {
+            label: 'url_get_ways',
+            key: 6,
+            value: '批量获取线'
+        },
+        {
+            label: 'url_save_changeset',
+            key: 7,
+            value: '保存'
+        },
+        {
+            label: 'url_track',
+            key: 8,
+            value: '众包轨迹'
+        },
+        {
+            label: 'url_get_image_info',
+            key: 9,
+            value: '图像识别'
+        },
+        {
+            label: 'url_google_image',
+            key: 10,
+            value: 'google影像'
+        },
+        {
+            label: 'url_qq_image',
+            key: 11,
+            value: '腾讯影像'
+        },
+        {
+            label: 'url_qq_background',
+            key: 12,
+            value: '腾讯底图'
+        },
+        {
+            label: 'url_get_task_detail',
+            key: 13,
+            value: '任务信息'
+        },
+        {
+            label: 'url_get_task_list',
+            key: 14,
+            value: '任务列表'
+        },
+        {
+            label: 'url_task_fetch',
+            key: 15,
+            value: '任务领取'
+        },
+        {
+            label: 'url_task_pause',
+            key: 16,
+            value: '任务暂停'
+        },
+        {
+            label: 'url_task_delete',
+            key: 17,
+            value: '任务删除'
+        },
+        {
+            label: 'url_walking',
+            key: 18,
+            value: '手图步行'
+        },
+        {
+            label: 'url_cycle',
+            key: 19,
+            value: '手图骑行'
+        },
+        {
+            label: 'url_sw_data',
+            key: 20,
+            value: '四维数据'
+        },
+        {
+            label: 'url_digger_data',
+            key: 21,
+            value: '挖掘数据'
+        },
+        {
+            label: 'url_history_tracking',
+            key: 22,
+            value: '历史轨迹'
+        },
+        {
+            label: 'url_task_history',
+            key: 23,
+            value: '错误批次'
+        },
+        {
+            label: 'url_merge_tasks',
+            key: 24,
+            value: '墨汁列表'
+        },
+        {
+            label: 'url_merge_changes_element',
+            key: 25,
+            value: '墨汁变更要素'
+        },
+        {
+            label: 'url_building_polygons',
+            key: 26,
+            value: '楼块数据'
+        },
+        {
+            label: 'url_query_mapids',
+            key: 27,
+            value: '查询图幅状态'
+        },
+        {
+            label: 'url_get_qa_history_list',
+            key: 28,
+            value: '融合列表'
+        },
+        {
+            label: 'url_task_retreat',
+            key: 29,
+            value: '任务退回'
+        },
+        {
+            label: 'url_task_edit',
+            key: 30,
+            value: '任务编辑'
+        },
+        {
+            label: 'url_task_commit',
+            key: 31,
+            value: '任务提交'
+        }
+    ]
+
+
+    let obj = {}
+
+    urlType.forEach( (item) => {
+        obj[item.label] = item
+    })
+
+    console.log(obj)
+    {
+    'url_building_polygons': {label: "url_building_polygons", key: 26, value: "楼块数据"},
+    'url_cycle': {label: "url_cycle", key: 19, value: "手图骑行"},
+    url_digger_data: {label: "url_digger_data", key: 21, value: "挖掘数据"},
+    url_get_image_info: {label: "url_get_image_info", key: 9, value: "图像识别"},
+    url_get_node: {label: "url_get_node", key: 3, value: "获取点"},
+    url_get_nodes: {label: "url_get_nodes", key: 5, value: "批量获取点"},
+    url_get_qa_history_list: {label: "url_get_qa_history_list", key: 28, value: "融合列表"},
+    url_get_task_detail: {label: "url_get_task_detail", key: 13, value: "任务信息"},
+    url_get_task_list: {label: "url_get_task_list", key: 14, value: "任务列表"},
+    url_get_way: {label: "url_get_way", key: 4, value: "获取线"},
+    url_get_ways: {label: "url_get_ways", key: 6, value: "批量获取线"},
+    url_google_image: {label: "url_google_image", key: 10, value: "google影像"},
+    url_history_tracking: {label: "url_history_tracking", key: 22, value: "历史轨迹"},
+    url_merge_changes_element: {label: "url_merge_changes_element", key: 25, value: "墨汁变更要素"},
+    url_merge_tasks: {label: "url_merge_tasks", key: 24, value: "墨汁列表"},
+    url_qq_background: {label: "url_qq_background", key: 12, value: "腾讯底图"},
+    url_qq_image: {label: "url_qq_image", key: 11, value: "腾讯影像"},
+    url_query_box: {label: "url_query_box", key: 1, value: "矢量瓦片"},
+    url_query_mapids: {label: "url_query_mapids", key: 27, value: "查询图幅状态"},
+    url_save_changeset: {label: "url_save_changeset", key: 7, value: "保存"},
+    url_search_onsite: {label: "url_search_onsite", key: 2, value: "搜索"},
+    url_sw_data: {label: "url_sw_data", key: 20, value: "四维数据"},
+    url_task_commit: {label: "url_task_commit", key: 31, value: "任务提交"},
+    url_task_delete: {label: "url_task_delete", key: 17, value: "任务删除"},
+    url_task_edit: {label: "url_task_edit", key: 30, value: "任务编辑"},
+    url_task_fetch: {label: "url_task_fetch", key: 15, value: "任务领取"},
+    url_task_history: {label: "url_task_history", key: 23, value: "错误批次"},
+    url_task_pause: {label: "url_task_pause", key: 16, value: "任务暂停"},
+    url_task_retreat: {label: "url_task_retreat", key: 29, value: "任务退回"},
+    url_track: {label: "url_track", key: 8, value: "众包轨迹"},
+    url_walking: {label: "url_walking", key: 18, value: "手图步行"}}
+
+</script>
+</html>

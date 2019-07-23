@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tt{
+
+        }
+        .tt tr{
+            height: 30px;
+            width: 100%;
+
+        }
+        .tt tr th{
+            height: 100%;
+            width: 25%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <table class="tt">
+        <tr>
+            <th>111111111111</th>
+            <th>222222222222</th>
+            <th>333333333333</th>
+            <th>444444444444</th>
+
+        </tr>
+
+
+
+    </table>
+    <button>添加行</button>
+
+
+</body>
+<script>
+
+    var data = {};
+    data["可空哦"] = ['dd','sds'];
+    data["然后"] = ['hr','3545'];
+    data["姐姐哦莫"] = ['78','98555'];
+    arr = [1,2,3,4,5]
+    arr.map(function(item,index){
+        console.log(item);
+        console.log(index)
+    })
+
+
+
+
+
+
+
+    // var str = "http://ishare-10003415.cossh.myqcloud.com/road/upload/oA9LiwB_i4a4vkJGoK9Shay6hUm4/17120020008/b83e56b5b95af3f6cdb38537270057f5/";
+    // var smallUrl = str.replace('file', 'picsh');
+    // alert(smallUrl == str)
+
+    // var st = "http://ishare-10003415.cossh.myqcloud.com/road/upload/oA9LiwB_i4a4vkJGoK9Shay6hUm4/17120020008/b83e56b5b95af3f6cdb38537270057f5/";
+    // var tt = document.body;
+    // console.log(tt.offsetHeight)
+    // console.log(window.getComputedStyle(tt).getPropertyValue('height'))
+
+
+
+    // var tt = document.getElementsByClassName('tt')[0];
+    // var btn = document.getElementsByTagName("button")[0];
+    //
+    // btn.onclick = function () {
+    //     var trr = document.createElement('tr');
+    //
+    //
+    // }
+
+    // var arr = [1,2,3,4,5,6];
+    // for ( var i = 0; i < arr.length; i++ ) {
+    //     if ( i == 3 ) {
+    //         break;
+    //     }
+    //     console.log(arr[i])
+    // }
+    //
+    // // console.log(333)
+    //
+    //
+    // ERNDP.renderTrackData = function () {
+    //     var index = -1;
+    //     var arr = this.renderTrackDataMarker;
+    //     var TrackDataIndex = [];    //存储index
+    //     // this.removeTrackDataMarker= [];
+    //     var z_index  = 0;
+    //     this.info = new qq.maps.InfoWindow({
+    //         map: this.detailMap.map
+    //     });
+    //
+    //     for (var j = 0; j < arr.length; j++) {
+    //         for(var i = 0; i < this.renderTracks.length;i++){
+    //
+    //             if ( arr[j] != this.renderTracks[i][0].group_id ) {
+    //                 for ( var l = 0; l < this.renderTracks[i].length; l++) {
+    //                     index++;
+    //                 }
+    //                 continue;
+    //             }
+    //             console.log(this.renderTracks[i]);
+    //             for ( var k = 0; k < this.renderTracks[i].length; k++) {
+    //                 index++;
+    //                 var latLng = new qq.maps.LatLng(this.renderTracks[i][k].lat,this.renderTracks[i][k].lng);
+    //                 console.log(this.bounds.contains(latLng));
+    //                 if (this.bounds.contains(latLng)){
+    //                     TrackDataIndex.push(index)
+    //                     var type = this.getTackDataType(this.renderTracks[i][k].type);
+    //                     if(this.currentTrackPointIndex == index)
+    //                         type = this.getTackDataSelectedType(this.renderTracks[i][k].type);
+    //
+    //                     if(this.renderTracks[i][k].type == 1)
+    //                         z_index = 15
+    //                     else
+    //                         z_index = 20;
+    //                     if(!this.TrackDataMarkers[index]){
+    //                         var Marker = this.detailMap.drawMarker({
+    //                             center: latLng,
+    //                             offset: i,
+    //                             zIndex: z_index
+    //                         }, type);
+    //                         Marker.group_id = this.renderTracks[i][k].group_id;
+    //                         Marker.type = this.renderTracks[i][k].type;
+    //                         Marker.lat = this.renderTracks[i][k].lat;
+    //                         Marker.lng = this.renderTracks[i][k].lng;
+    //                         Marker.msg = this.renderTracks[i][k].msg;
+    //                         Marker.timestamp = this.renderTracks[i][k].timestamp;
+    //                         if(this.renderTracks[i][k].description)
+    //                             Marker.description = this.renderTracks[i][k].description
+    //                         this.TrackDataMarkers[index] = Marker;
+    //                         this.addTrackDataLisnter(index);
+    //
+    //                         var bool1 = (!this.checkGroup.showMarker)&&(Marker.type == 1)
+    //                         var bool2 = (!this.checkGroup.showtaskMark)&&(Marker.type == 2)
+    //                         var bool3 = (!this.checkGroup.showError)&&(Marker.type == 3)
+    //                         if(bool1||bool2||bool3)
+    //                             Marker.setVisible(false)
+    //                     }
+    //                 }
+    //
+    //             }
+    //
+    //         }
+    //         index = -1;
+    //     }
+    //
+    //
+    //     // this.removeTrackDataMarker= this.getRemoveIndex(TrackDataIndex, this.TrackDataIndex);
+    //     // this.TrackDataIndex = TrackDataIndex;
+    //     this.TrackDataIndex = this.TrackDataIndex.concat(TrackDataIndex);
+    //
+    // }
+    //
+    //
+    // //采集轨迹点
+    // ERNDP.showMarker = function () {
+    //     this.checkGroup.showMarker = $('[name="collectTrackPoint"]').prop("checked");
+    //     console.log(this.TrackDataMarkers);
+    //     if (this.checkGroup.showMarker) {
+    //         this.TrackDataMarkers.forEach(function (item,index) {
+    //             if(item&&(item.type == 1))
+    //                 item.setVisible(true)
+    //         })
+    //     }else{
+    //         this.TrackDataMarkers.forEach(function (item,index) {
+    //             if(item&&(item.type == 1))
+    //                 item.setVisible(false)
+    //         })
+    //     }
+    //
+    // }
+    //
+    //
+    //
+    // ERNDP.renderTrackData = function () {
+    //     var index = -1;
+    //     var arr = this.renderTrackDataMarker;
+    //     var TrackDataIndex = [];    //存储index
+    //     // this.removeTrackDataMarker= [];
+    //     var z_index  = 0;
+    //     this.info = new qq.maps.InfoWindow({
+    //         map: this.detailMap.map
+    //     });
+    //
+    //     for (var j = 0; j < arr.length; j++) {
+    //         for(var i = 0; i < this.renderTracks.length;i++){
+    //
+    //             if ( arr[j] != this.renderTracks[i][0].group_id ) {
+    //                 for ( var l = 0; l < this.renderTracks[i].length; l++) {
+    //                     index++;
+    //                 }
+    //                 continue;
+    //             }
+    //             console.log(this.renderTracks[i]);
+    //             for ( var k = 0; k < this.renderTracks[i].length; k++) {
+    //                 index++;
+    //                 var latLng = new qq.maps.LatLng(this.renderTracks[i][k].lat,this.renderTracks[i][k].lng);
+    //                 console.log(this.bounds.contains(latLng));
+    //                 if (this.bounds.contains(latLng)){
+    //
+    //                     var type = this.getTackDataType(this.renderTracks[i][k].type);
+    //                     if(this.currentTrackPointIndex == index)
+    //                         type = this.getTackDataSelectedType(this.renderTracks[i][k].type);
+    //
+    //                     if(this.renderTracks[i][k].type == 1) {
+    //                         z_index = 15;
+    //                         if(!this.TrackDataMarkers[index]){
+    //                             TrackDataIndex.push(index)
+    //                             var Marker = this.detailMap.drawMarker({
+    //                                 center: latLng,
+    //                                 offset: i,
+    //                                 zIndex: z_index
+    //                             }, type);
+    //                             Marker.group_id = this.renderTracks[i][k].group_id;
+    //                             Marker.type = this.renderTracks[i][k].type;
+    //                             Marker.lat = this.renderTracks[i][k].lat;
+    //                             Marker.lng = this.renderTracks[i][k].lng;
+    //                             Marker.msg = this.renderTracks[i][k].msg;
+    //                             Marker.timestamp = this.renderTracks[i][k].timestamp;
+    //                             if(this.renderTracks[i][k].description)
+    //                                 Marker.description = this.renderTracks[i][k].description
+    //                             this.TrackDataMarkers[index] = Marker;
+    //                             this.addTrackDataLisnter(index);
+    //
+    //                             var bool1 = (!this.checkGroup.showMarker)&&(Marker.type == 1)
+    //                             var bool2 = (!this.checkGroup.showtaskMark)&&(Marker.type == 2)
+    //                             var bool3 = (!this.checkGroup.showError)&&(Marker.type == 3)
+    //                             if(bool1||bool2||bool3)
+    //                                 Marker.setVisible(false)
+    //                         }
+    //
+    //                     }
+    //
+    //                     // else
+    //                     //     z_index = 20;
+    //
+    //                 }
+    //
+    //             }
+    //
+    //         }
+    //         index = -1;
+    //     }
+    //
+    //
+    //     // this.removeTrackDataMarker= this.getRemoveIndex(TrackDataIndex, this.TrackDataIndex);
+    //     // this.TrackDataIndex = TrackDataIndex;
+    //     this.TrackDataIndex = this.TrackDataIndex.concat(TrackDataIndex);
+
+    // }
+
+</script>
+</html>

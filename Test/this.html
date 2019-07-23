@@ -1,0 +1,107 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this指向</title>
+</head>
+<body>
+    <div id="testDiv" style="width: 800px;margin: 20px auto">
+        <strong>this</strong> 是 JavaScript 语言的一个关键字。 它是<b>函数运行时</b>，在函数体内部自动生成的一个对象，<b>只能在函数体内部使用</b>。<br><br>
+        this指向问题：<br>
+            1.当函数作为 普通函数 或 对象的方法 或 事件处理程序 使用时，指向上级对象 如 window ，局部对象 ，事件源<br>
+            2.当函数作为 构造函数 使用时，指向 构造出的新对象<br>
+            3.当使用 apply 、bind 、call 改变this指向时，this指向第一个参数<br><br>
+
+        apply、call、bind比较<br>
+            1.apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；<br>
+            2.apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；<br>
+            3.apply 、 call 、bind 三者都可以利用后续参数传参；<br>
+            4.bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。<br><br>
+    </div>
+
+</body>
+<script>
+    // 单例模式
+    // function Fn() {
+    //     if(!Fn.init){
+    //         Fn.init = {
+    //             tt : '开始',
+    //             change () {
+    //                 console.log(this)
+    //                 // setTimeout(function () {
+    //                 //     console.log(this)
+    //                 // }.bind(this),1000)
+    //             }
+    //         }
+    //     }
+    //     return Fn.init
+    // }
+
+    tt = '喀什'
+    obj = {
+        item1: 'obj的第一项',
+        item2: function(){
+            console.log(this)
+            gg = function (){
+                console.log(this)
+            }
+            gg()
+        }
+    }
+
+    // obj.item2()
+    // var newObj = new obj.item2()
+    // console.log(newObj)
+
+    function Fn() {
+        Fn.tt = 'llll'
+        this.tt = '开始'
+        this.change = function () {
+            console.log(this)
+        }
+        this.obj = {
+            thisItem1: 'this.obj的第一项',
+            thisItem2: function () {
+                console.log(this)
+            }
+        }
+        this.obj.thisItem2()
+        this.aa = '啦啦啦'
+        console.log(this)
+    }
+
+    // Fn()
+    // change()
+    // console.log(tt)
+
+    // var newFn = new Fn()
+    // newFn.dd = '结束'
+    // newFn.change()
+    //
+    // var ccFn = new Fn()
+    // ccFn.change()
+
+    // let testDiv = document.getElementById('testDiv')
+    // console.log(testDiv)
+    // testDiv.onclick = function (e) {
+    //     console.log(e)
+    //     console.log(this)
+    // }
+
+    function f() {
+        console.log(this)
+        function f1() {
+            console.log(this)
+            return function f2() {
+                console.log(this)
+            }
+        }
+        var dd = f1()
+        dd()
+    }
+    f()
+
+</script>
+</html>

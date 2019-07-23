@@ -1,0 +1,108 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  #registerWrap{
+    width: 500px;
+    margin: 50px auto;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    padding: 10px;
+  }
+</style>
+<body>
+  <div id="registerWrap">
+    <form id="register" method="get">
+      <label>QQ:</label><input type="text" name="QQ"><br><br>
+      <label>密码:</label><input type="password" name="pwd"><br><br>
+      <label>确认密码:</label><input type="password" name="pwdTest"><br><br>
+      <input class="btn" type="button" value="注册">
+    </form>
+  </div>
+  <script>
+    function ff () {
+      console.log(this)
+    }
+    // ff()
+    let register = document.getElementById('register')
+    let btn = document.getElementsByClassName('btn')[0]
+    // btn.onclick = ff
+
+    // this指向对象
+    // var point = {
+    //   x : 0, 
+    //   y : 0, 
+    //   moveTo : function(x, y) { 
+    //     this.x = this.x + x; 
+    //     this.y = this.y + y; 
+    //   } 
+    // }
+    // console.log(point)
+    // point.moveTo(1, 1)
+    // console.log(point)
+
+
+    // this指向window
+    // function makeNoSense(x) { 
+    //   this.x = x
+    // }
+    // console.log(x)
+    // makeNoSense(5)
+    // console.log(x)
+
+
+    // var point = {
+    //   x : 0,
+    //   y : 0,
+    //   moveTo : function(x, y) {
+    //     var moveX = function(x) {
+    //       this.x = x
+    //     }
+    //     var moveY = function(y) {
+    //       this.y = y
+    //     }
+    //     moveX(x)
+    //     moveY(y)
+    //   }
+    // }
+    // point.moveTo(1, 1)
+    // console.log(point.x, point.y)
+
+    // this指向构造函数 构造出来的对象
+    // function Point(x, y){ 
+    //   this.x = x
+    //   this.y = y
+    // }
+    // let gz = new Point(2,3)
+    // console.log(gz.x, gz.y)
+
+
+
+    function Point(x, y){
+      this.x = x
+      this.y = y
+      this.moveTo = function(x, y){
+          this.x = x
+          this.y = y
+      }
+    }
+    
+    var p1 = new Point(0, 0)
+    console.log(p1)
+    var p2 = {x: 0, y: 0}
+    p1.moveTo(1, 1)
+    console.log(p1)
+    p1.moveTo.apply(p2, [10, 10])
+    console.log(p1)
+    console.log(p2)
+
+
+
+
+  </script>
+</body>
+</html>

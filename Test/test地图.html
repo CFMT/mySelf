@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>限制边界范围</title>
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        body, button, input, select, textarea {
+            font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+        }
+        #container{
+            min-width:600px;
+            min-height:767px;
+        }
+    </style>
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp"></script>
+    <script>
+
+        var init = function() {
+
+            var sw = new qq.maps.LatLng(39.96693, 116.49369);//东北角坐标
+            var ne = new qq.maps.LatLng(39.86000, 116.28666);//西南角坐标
+            var latlngBounds = new qq.maps.LatLngBounds(ne, sw);
+
+            //将地图添加到元素
+            var map = new qq.maps.Map(document.getElementById("container"),{
+                center: new qq.maps.LatLng(39.916527,116.397128),
+                // boundary : latlngBounds,
+                zoom: 13
+            });
+
+            //绘制路线
+            var path = [
+                sw,
+                new qq.maps.LatLng(39.96693, 116.28666),
+                ne,
+                new qq.maps.LatLng(39.86000, 116.49369)
+            ];
+
+            // 创建地图多边形叠加层
+            var polygon = new qq.maps.Polygon({
+                path : path,
+                map: map
+            });
+            console.log(polygon)
+        }
+
+
+        var latArr = [1,2,3,45,6]
+
+
+
+        var minLat = Math.min(...latArr);
+        var mixLat = Math.max(...latArr);
+        console.log(minLat,mixLat)
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body onload="init()">
+<div id="container"></div>
+<div id="info">
+    当前地图的经纬度范围(东北点,西南点)为: ([39.96693, 116.49369],[39.88795, 116.28666])
+</div>
+</body>
+</html>
