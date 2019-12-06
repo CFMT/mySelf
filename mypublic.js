@@ -329,6 +329,7 @@ function secToTime (cellValue) {
   }
 
 
+
 //数组随机打乱顺序
 function arrOrder (arr) {
 	let len = arr.length
@@ -340,6 +341,164 @@ function arrOrder (arr) {
 		arr[len] = targetItem
 	}
 	return arr
+}
+
+
+//去除输入框尾部空格
+const trimSpace = (str) => {
+    return str.replace(/\s*$/g, '')
+}
+
+//遍历所有请求参数，将字符串去除尾部空格
+const paramsTrimSpace = (param) => {
+    Object.keys(param).forEach(item => {
+        if (typeof param[item] === 'string') {
+            param[item] = trimSpace(param[item])
+        }
+    })
+    return param
+}
+
+//银行卡脱敏展示
+ const accountNoChange = (accountNo) => {
+    if (accountNo) {
+	//过滤手机号    
+        if(accountNo.length === 11){
+            return accountNo
+        } else {
+            let reg = /^(\d{4})\d+(\d{4})$/
+            let str = accountNo.replace(reg,"$1 **** **** $2")
+            return str
+        }
+    }
+}
+
+
+
+//使用 js-export-excel 插件 导出Excel表格  普通http请求
+// total  数据总条数
+// pageSize  一次请求的条数
+// page  page参数的位置flag
+// formCustom 查询条件
+// url  请求方法 即地址
+// file  导出文件参数，为obj  { fileName, sheetName, sheetItem }
+ const exportExcel = ({total, pageSize, page, formCustom, url, file}, resolve, reject) => {
+    !pageSize && (pageSize = 1000)
+    const totalExcelPage = Math.ceil(total / pageSize)
+    let excelTableList = []
+    let getExcelPromice = (pageSize, pageNo) => {
+        let p = new Promise((resolve, reject) => {
+            getExcelList(pageNo, pageSize, resolve, reject)
+        })
+        p.then((pageNo) => {
+            pageNo++
+            if(pageNo <= totalExcelPage){
+                getExcelPromice(pageSize, pageNo)
+            } else {
+                downloadExcel(excelTableList, file)
+                resolve(true)
+            }
+        }, () => {
+            message.error('请求中断，请重新下载文件', 2)
+            reject(false)
+        })
+    }
+    let getExcelList = (pageNo, pageSize, cbResolve, cbReject) => {
+        let _params
+        if (page) {
+            _params = {
+                page:{
+                    pageNo,
+                    pageSize
+                }
+            }
+        } else {
+            _params = {
+                pageNo,
+                pageSize
+            }
+        }
+        Object.assign(_params, formCustom)
+        _params = paramsTrimSpace(_params)
+        axiosPost(axiosMethod[url], _params).then(res => {
+            if(res.data.success){
+                let data = res.data || {}
+                let list = JSON.parse(JSON.stringify(data.result)) || []
+                excelTableList = excelTableList.concat(list)
+                cbResolve(pageNo)
+            } else {
+                cbReject()
+                message.error(res.data.message, 2)
+            }
+        }).catch(() => {
+            cbReject()
+            message.error(tips.axiosCatch, 2)
+        })
+    }
+    getExcelPromice(pageSize, 1)
+}
+
+// 下载列表Excel
+ const downloadExcel = (data, file) => {
+    let option={}
+    let dataTable = []
+    let sheetItem = file.sheetItem
+    let fileName = file.fileName
+    let sheetName = file.sheetName
+    if (data.length > 0) {
+        data.forEach(item => {
+            let obj = {}
+            Object.keys(sheetItem).forEach(subItem => {
+                if (typeof sheetItem[subItem].key === 'string') {
+                    obj[subItem] = item[sheetItem[subItem].key]
+                } else {
+                    //对应多层数据结构
+                    obj[subItem] = item[sheetItem[subItem]['key'][0]][sheetItem[subItem]['key'][1]]
+                }
+                if (sheetItem[subItem].fn) {
+                    obj[subItem] = sheetItem[subItem].fn(obj[subItem])
+                }
+            })
+            dataTable.push(obj)
+        })
+    }
+    option.fileName = fileName
+    option.datas=[
+        {
+            sheetData: dataTable,
+            sheetName: sheetName,
+            sheetFilter: Object.keys(sheetItem),
+            sheetHeader: Object.keys(sheetItem)
+        }
+    ]
+    let toExcel = new ExportJsonExcel(option)
+    toExcel.saveExcel()
+}
+ 
+ // reacr  ant-design 列表折行显示，  数组字段换行显示
+// const breakWordString = (text) => {
+//     if (text) {
+//         return <div style={{wordWrap: 'break-word', wordBreak: 'break-all'}}>
+//             {text.split(',').map(item => {
+//                 return <p key={item} style={{ margin: '0px' }}>{item}</p>
+//             })}
+//         </div>
+//     }
+//     return text
+// }
+
+
+// 乘法函数，用来得到精确的乘法结果  解决js浮点运算bug  
+// arg为要乘以的数  
+// 注意数字类型才能用此方法                        
+// 还有关于 浮点运算的 除法，加减法 
+Number.prototype.mul = function(arg) {
+    let m = 0,
+        s1 = this.toString(),
+        s2 = arg.toString();
+    try { m += s1.split(".")[1].length } catch(e) {}
+    try { m += s2.split(".")[1].length } catch(e) {}
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
 }
 
 
