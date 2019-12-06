@@ -1,0 +1,100 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+
+
+
+<script>
+    let num = 3
+    if (num === 3 && num%3 === 0 || num%6 === 0 ) {
+        console.log('上')
+    } else {
+        console.log('下')
+    }
+    console.log('下')
+    console.log('下')
+    console.log('下')
+    console.log('下')
+    console.log('下')
+    // console.log('下')
+    // console.log('下')
+    // setTimeout(() => {
+    //     console.count('count')
+    // }, 2000)
+    // console.count('count')
+    // console.count('count')
+    console.count('count')
+    console.count('count')
+    console.count('count')
+    console.count('下')
+    console.count('count')
+    console.count('count')
+    console.count('下')
+    console.count('count')
+    console.error('ssss')
+    console.group('第一层');
+    console.group('第二层');
+
+    console.log('error');
+    console.error('error');
+    console.warn('error');
+
+    console.groupEnd();
+    console.groupEnd();
+    var arr= [
+        { num: "1"},
+        { num: "2"},
+        { num: "3" }
+    ];
+    console.table(arr);
+
+    var obj= {
+        a:{ num: "1"},
+        b:{ num: "2"},
+        c:{ num: "3" }
+    };
+    console.table(obj);
+    console.log(obj);
+
+    console.time('计时器1');
+    for (var i = 0; i < 100; i++) {
+        for (var j = 0; j < 100; j++) {}
+    }
+
+    console.time('计时器2');
+    for (var i = 0; i < 1000; i++) {
+        for (var j = 0; j < 1000; j++) {}
+    }
+    // console.timeEnd('计时器2');
+    // setTimeout(() => {
+    //     console.count('count')
+    //     console.timeEnd('计时器2');
+    // }, 2000)
+    console.timeEnd('计时器1');
+
+    function d(a) {
+        console.trace();
+        return a;
+    }
+    function b(a) {
+        return c(a);
+    }
+    function c(a) {
+        return d(a);
+    }
+    var a = c('123');
+
+    console.log("%d年%d月%d日",2011,3,66);
+
+
+
+</script>
+</html>

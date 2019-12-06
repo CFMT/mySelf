@@ -1,0 +1,215 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+    //////////////////////////////
+    // async  与   await   与  promise
+
+    let count = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('promise故意抛出异常')
+            }, 3000);
+        })
+        // return setTimeout(() => {
+        //     return  ('promise故意抛出异常')
+        // }, 3000);
+    }
+    let list = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve([1, 2, 3])
+            }, 3000);
+        })
+        // return setTimeout(() => {
+        //     return  ([1, 2, 3])
+        // }, 3000);
+    }
+
+    let getList = async () => {
+        console.time('start1');
+        let c = await list()
+        console.timeEnd('start1')
+        console.log('async')    //此段代码并没有执行
+        console.time('start2');
+        let l = await count()
+        console.timeEnd('start2')
+        return { count: c, list: l }
+    }
+    // console.time('start');
+    // getList().then(res => {
+    //     console.timeEnd('start')
+    //     console.log(res)
+    // })
+    //     .catch(err => {
+    //         console.timeEnd('start')
+    //         console.log(err)
+    //     })
+
+
+    ////////////////////////////
+    //  Generator 函数  处理异步
+
+    g1 = function (x) {
+        return 'g111' + x
+    }
+
+    g2 = function (x) {
+        return 'g2222' + x
+    }
+
+    function* gener(x) {
+        console.time('ss')
+        console.timeEnd('ss')
+        const c = yield g1(x)
+        console.log(x)
+        const l = yield g2(x)
+        console.log(x)
+        return {c, l, x}
+    }
+    // let a = {
+    //     x: 2,
+    //     y: 3
+    // }
+    // let gl = gener(a)
+//     console.log(gl.next())
+//     console.log(gl.next())
+//     console.log(gl.next())
+// console.clear()
+//     console.log('ddd' + a)
+//     console.log(typeof ('dddd' + a))
+
+
+    function* helloWorldGenerator() {
+        const c = yield 'hello';
+        const l = yield 'world';
+        return 'ending';
+        return 'kkk'
+    }
+
+    // var hw = helloWorldGenerator()
+    // console.log(hw.next())
+    // console.log(hw.next())
+    // console.log(hw.next())
+    // console.log(hw.next())
+
+    function* gen(x){
+        var y = yield x + 2;
+        if (y) {
+            return y
+        } else {
+            y = 'ddd'
+        }
+        return y + 1;
+    }
+
+    // var g = gen(1);
+    // console.log(g.next())
+    // console.log(g.next(2))
+    // console.log(g.next())
+
+
+
+    function* genn(x){
+        try {
+            var y = yield x + 2;
+            y = yield x + 'ff'
+        } catch (e){
+            console.log(e);
+        }
+        return y;
+    }
+
+    // var gg = genn(1);
+    // console.log(gg.next())
+    // console.log(gg.next())
+    // gg.throw('出错了');
+    // console.log(gg.next())
+
+    // 出错了
+
+
+    // 一百元新币  重约1.15克  15.5cm * 7.7cm * 0.09mm
+    // 一万块    9mm * 15.5cm * 7.7cm =  107.415 cm3    115克
+    //一百万     9mm * 100 * 15.5cm * 7.7cm =   10741.5 cm3      11500克  =  11.5 kg
+    //一亿       9mm * 100 * 100 * 15.5cm * 7.7cm =   1074150 cm3  =   1.07415 m3
+
+
+
+
+    ////////////////////////////////
+    //   可枚举属性 与 不可枚举属性
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+    ////////////////////////////////
+    //   解构赋值
+
+    let [a, b, c, d] = [1, 2, 3]
+    // console.log(a)
+    // console.log(d)
+
+    // let [foo, [[bar], baz]] = [1, [[2], 3]]
+    // let [foo, bar, baz] = [[1,2], [[2], 3]]
+    let [foo, bar, baz] = [{1:1,2:2}, {2:[2], 3:3}]
+    // console.log(foo)
+    // console.log(bar)
+    // console.log(baz)
+
+    let [ , third ] = ["foo", "bar", "baz"]
+    // console.log(third)
+
+
+    let arr = [1, 2, 3]
+    let brr = [11, 22, 33]
+    // console.log([...arr, ...brr])
+
+    let obj = {a: 3, b: 4}
+    let obj2 = { b: 44, c: 55}
+    // console.log({obj, obj2})
+
+    let { ofoo: ba } = { ofoo: 'aaa', bar: 'bbb' };
+
+    console.log(ba)
+    // console.log(ofoo)
+
+    // let s1="some text"
+    // s1.color="red"
+    let s2=new String("some text")
+    s2.color="red"
+    // console.log(s1.color)
+    console.log(s2.color)
+    // console.log(s1==s2)
+    // console.log(s1===s2)
+
+
+
+
+
+</script>
+
+</body>
+</html>

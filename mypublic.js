@@ -20,29 +20,16 @@ function getColor(){
 	return color;
 }
 
-//函数功能 ：显示自定义的日期时间格式
+//函数功能 ：显示自定义的日期时间格式 参数now为标准日期格式 转为 YYYY-MM-DD hh:mm:ss
 function dateToString(now){
 	var str1 = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
 	var h = toTwo( now.getHours() );
 	var m = toTwo( now.getMinutes() );
 	var s = toTwo( now.getSeconds() );
-	
-	var str2 =h +":"+m+":"+s;
-	
-	return str1 + " " + str2;
-}
 
-//6自定义时间格式 将时间格式转成字符串
-function dateToString2(now){  //显示自定义的时间格式	
-	var y=now.getFullYear();
-	var m=toTow( (now.getMonth()+1) );
-	var d=toTow( now.getDate() );
-	var str1=y+"-"+m+"-"+d;
-	var h=toTow( now.getHours() );
-	var m=toTow( now.getMinutes() );
-	var s=toTow( now.getSeconds() );
-	var str2=h+":"+m+":"+s;
-	return str1+" "+str2;
+	var str2 =h +":"+m+":"+s;
+
+	return str1 + " " + str2;
 }
 
 
@@ -73,12 +60,12 @@ function pz(d1,d2){
 	var R1 = d1.offsetWidth + d1.offsetLeft;
 	var T1 = d1.offsetTop;
 	var B1 = d1.offsetHeight + d1.offsetTop;
-	
+
 	var L2 = d2.offsetLeft;
 	var R2 = d2.offsetWidth + d2.offsetLeft;
 	var T2 = d2.offsetTop;
 	var B2 = d2.offsetHeight + d2.offsetTop;
-	
+
 	//碰不上的条件
 	if( R1<L2||L1>R2||B1<T2||T1>B2 ){
 		return false;
@@ -109,7 +96,7 @@ function startMove(obj,json,callback){
 				//如果没有达到目标值  就关闭开关变量为false
 				flag = false;
 			}
-			//设置样式值  
+			//设置样式值
 			if( attr == "opacity" ){
 				obj.style.opacity = (current + speed)/100;
 			}else if( attr == "zIndex" ){
@@ -121,7 +108,7 @@ function startMove(obj,json,callback){
 
 		//循环结束后  如果flag值为true   停止定时器
 		if( flag ){
-			clearInterval(obj.timer);	
+			clearInterval(obj.timer);
 			//上移动作完成  开始进入下一个动作
 			// 实现下一个动作代码
 			if( callback ){//判断如果存在下一个动作  就执行
@@ -130,10 +117,10 @@ function startMove(obj,json,callback){
 		}
 	},30)
 }
- 
+
  //获取样式函数
 function getStyle(obj,attr){
-	return window.getComputedStyle?window.getComputedStyle(obj,false)[attr]:obj.currentStyle[attr]; 
+	return window.getComputedStyle?window.getComputedStyle(obj,false)[attr]:obj.currentStyle[attr];
 }
 
 
@@ -149,12 +136,12 @@ function getajax(url,callback,data){
 	ajax.send();
 	ajax.onreadystatechange = function(){
 		if(ajax.status == 200 && ajax.readyState == 4){
-			callback( ajax.responseText );
+			callback( JSON.parse(ajax.responseText) );
 		}
 	}
 }
-	
-	
+
+
 //ajax promise对象函数
 function getajaxpromise(url,data){
 	if(data){
@@ -166,18 +153,18 @@ function getajaxpromise(url,data){
 		ajax.send();
 		ajax.onreadystatechange = function(){
 			if(ajax.status = 200 && ajax.readyState == 4){
-				success( ajax.responseText );
-			}									
+				success( JSON.parse( ajax.responseText) );
+			}
 		}
 		setTimeout(function(){
 			failed("请求失败");
 		},3000)
 
-	});	
-return pro;			
+	});
+return pro;
 }
 
-	
+
 	//jQuery拖拽插件
 //	$.fn.extend({
 //		down : function(){
@@ -208,21 +195,21 @@ return pro;
 //存取cookie
 function setCookie(key,value,days){
 	var now = new Date();
-	now.setTime(now.getTime() + days*24*60*60*1000 ) 
+	now.setTime(now.getTime() + days*24*60*60*1000 )
 	document.cookie=key+"="+value + ";expires="+now;
 }
 function getCookie(key){
 	//如果cookie中有数据  才可以获取数据
-	if(document.cookie){		
+	if(document.cookie){
 		var cookieInfo = document.cookie;
 		//cookie中可能会包含一些 额外的数据，这些数据特点是由   分号和空格间隔的
 		//所以 先将 分号和空格  替换掉   替换成  ;
-		var arr = cookieInfo.replace(/;\s/g,';').split(";");	
+		var arr = cookieInfo.replace(/;\s/g,';').split(";");
 		for(var i=0;i<arr.length;i++){
 			item = arr[i].split("=");
 			if(item[0] == key){
 				brr = item[1];
-				return JSON.parse(brr);//如果找到 我们想要的键，将值转成数组返回 
+				return JSON.parse(brr);//如果找到 我们想要的键，将值转成数组返回
 			}
 		}
 		//如果cookie中 没有我们想获取的键值，直接返回一个空数组
@@ -233,8 +220,8 @@ function getCookie(key){
 }
 function removeCookie(key){
 	setCookie(key,"",-1);
-}	
-	
+}
+
 //判断素数
 function isPrimerNumber( m ){
 	for( var i=2 ; i<=m-1 ; i++){
@@ -252,9 +239,9 @@ function isLeapYear( m ){
 		return true;
 	}
 	return false;
-}	
-	
-	
+}
+
+
 //1,数组去重:判断原数组中的每一个数在空数组中是否存在，如果不存在，就将该数存入到新空数组中
 function arrayRROne(arr){
 	var brr=[];
@@ -341,6 +328,19 @@ function secToTime (cellValue) {
     return t
   }
 
+
+//数组随机打乱顺序
+function arrOrder (arr) {
+	let len = arr.length
+	while (len) {
+		let lastItem = arr[--len]
+		let targetNum = Math.floor(Math.random() * len )
+		let targetItem = arr[targetNum]
+		arr[targetNum] = lastItem
+		arr[len] = targetItem
+	}
+	return arr
+}
 
 
 
