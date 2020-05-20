@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var arr = [1,2,35,33,5,3,3,23,5,6,1,44,33,6,2,2,3,3,1,6,23,1,6]
+
+    console.log(arr)
+
+    // var count = arr.reduce(function(allElements, ele){
+    //     if (ele in allElements) {
+    //         allElements[ele]++;
+    //     } else {
+    //         allElements[ele] = 1;
+    //     }
+    //     return allElements;
+    // }, {});
+
+    // console.log(arr)
+
+    // arr.sort(( a, b ) => {
+    //     return b - a
+    // })
+
+    // console.log(arr)
+
+    var no = arr.filter(function (item, index, self) {
+        return self.indexOf(item) === index
+    })
+
+    console.log(arr)
+    console.log(no)
+
+	
+</script>
+</body>
+</html>

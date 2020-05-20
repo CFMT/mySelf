@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XSS攻击</title>
+</head>
+<body>
+<div style="margin: 20px auto;">
+    <label>显示</label><input class="ipt" value="1468" />
+</div>
+
+<button class="btn-show">添加字符串</button>
+<script>
+    var btnShow = document.getElementsByClassName('btn-show')[0]
+    var ipt = document.getElementsByClassName('ipt')[0]
+    btnShow.onclick = function () {
+        // console.log(ipt)
+
+        str = 'alert("哈哈哈")'
+        ipt.value = str
+    }
+
+
+</script>
+</body>
+</html>

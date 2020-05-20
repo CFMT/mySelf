@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<script>
+
+    let arr = [1,2,3,4,5,6,7,8,9]
+    let fn = (arr) => {
+        let len = arr.length
+        while (len) {
+            let lastItem = arr[--len]
+            let targetNum = Math.floor(Math.random() * len )
+            let targetItem = arr[targetNum]
+            arr[targetNum] = lastItem
+            arr[len] = targetItem
+        }
+        return arr
+    }
+    console.log(fn(arr))
+
+
+</script>
+
+</body>
+</html>

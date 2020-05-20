@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input id="input" />
+<button onclick="getValue()">提交</button>
+
+    <script>
+        // var uin = 'o0993112573'
+        // var ignoreStr = uin.match('^[^1-9]+')[0];
+        // uin = uin.replace(ignoreStr, '');
+        // console.log(uin)
+        // console.log(ignoreStr)
+
+
+        const data = {};
+        const input = document.getElementById('input');
+        console.log(Object.defineProperty,'Object.defineProperty')
+        // Object.defineProperty(data, 'text', {
+        //     set(value) {
+        //         console.log(value, 'value')
+        //         console.log(this, 'this')
+        //         input.value = value;
+        //         this.value = value;
+        //     }
+        // });
+        input.onchange = function(e) {
+            data.text = e.target.value;
+        }
+
+        getValue = () => {
+            console.log(input.value,'666')
+        }
+
+
+    </script>
+
+</body>
+</html>

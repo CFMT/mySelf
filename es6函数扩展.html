@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap{
+        position: relative;
+        background: #0b93d5;
+        overflow: hidden;
+        height: 400px;
+    }
+    .inside{
+        /*position: absolute;*/
+        /*left: 50%;*/
+        /*top: 50%;*/
+        /*left: 0;*/
+        /*top: 0;*/
+        /*right: 0;*/
+        /*bottom: 0;*/
+        width: 100px;
+        height: 100px;
+        margin: 50%;
+        /*margin: auto;*/
+        transform: translate(-50%, -50%);
+        /*margin: 50px 0 0 50px;*/
+        background: white;
+
+    }
+
+    .box{
+        height: 100px;
+        background: #0b93d5;
+        padding-top: 20px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .box img{
+        width: 50px;
+        height: 50px;
+        background: #00ee00;
+        border: none;
+
+    }
+
+    .box span{
+        font-size: 20px;
+        /*line-height: 50px;*/
+    }
+
+</style>
+<body>
+
+<!--<div class="wrap">-->
+    <!--<div class="inside">-->
+<!--打广告的观点-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="box">
+    <img />
+    <span> 水电费is斗破 </span>
+</div>
+
+</body>
+
+
+
+<script>
+
+    // console.log(undefined == null)
+
+    //函数参数的默认值
+    test = (x = 'hello' , y = 'world') => {
+        console.log(x + ' ' +  y)
+    }
+    // test()
+    // test(undefined, null)
+    // test(NaN, 0)
+    // test(true, false)
+    // test()
+    // test('aaa', 'bbbb')
+    // test('', 'ccc')
+    // test('ddd', '')
+
+    sameParam = ( a,  b) => {
+        // console.log(a)
+        // console.log(a)
+        // console.log(b)
+    }
+
+    // sameParam(1,1,2)
+
+</script>
+
+<script>
+
+    var str = "hello";
+    var chars = [...str];
+    // console.log(chars);
+
+    // console.log(...[1, 2, 3])
+    // 1 2 3
+
+    // console.log(1, ...[2, 3, 4], 5)
+    // 1 2 3 4 5
+
+    let objaa = {
+        aa: '1',
+        bb: 2,
+        cc: 3
+    }
+
+
+
+    var array = [1, 2, 3]
+    var iter = array[Symbol.iterator]()
+    // console.log(iter.next())
+    //
+    // console.log(iter.next())
+    //
+    // console.log(iter.next())
+    //
+    // console.log(iter.next())
+
+    // destructuringArray( [1,[2,4],3], "[a,[b],c]" );
+    // result
+    // { a:1, b:2, c:3 }
+
+
+    const targetArray = [1, [2, 3], 4];
+    const formater = "[a, [b], c]";
+    const formaterArray = ['a', ['b'], 'c'];
+
+    const destructuringArray = (values, keys) => {
+        try {
+            const obj = {};
+            if (typeof keys === 'string') {
+                keys = JSON.parse(keys.replace(/\w+/g, '"$&"'));
+            }
+
+            const iterate = (values, keys) =>
+                keys.forEach((key, i) => {
+                    if(Array.isArray(key)) iterate(values[i], key)
+                    else obj[key] = values[i]
+                })
+
+            iterate(values, keys)
+
+            return obj;
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
+
+    console.dir(destructuringArray(targetArray,formater));
+    console.dir(destructuringArray(targetArray,formaterArray));
+
+    console.log(typeof "[a, [b], c]".replace(/\w+/g, '"$&"') )
+
+
+    const yourFunction = function(func, threshold) {
+        let timeOut;
+        return function() {
+            if (!timeOut) {
+                timeOut = setTimeout(() => {
+                    timeOut = null;
+                    func.apply(this, arguments)
+                }, threshold)
+            }
+        }
+    }
+
+    const triggerSearch = yourFunction((val) => {
+        console.log(this.prop,'propsprops')
+        // const {
+        //     onSearch
+        // } = this.props
+        // onSearch(val)
+    }, 300)
+    triggerSearch('66')
+
+</script>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<body>
+    <div id="app">
+        <ve-line :data="chartData"></ve-line>
+    </div>
+</body>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    chartData: {
+                        columns: ['日期', '销售额', '超时', '成功率'],
+                        rows: [
+                            { '日期': '1月1日', '销售额': 123, '超时': 453, '成功率': 0.98612 },
+                            { '日期': '1月2日', '销售额': 1223, '超时': 651, '成功率': 0.84353 },
+                            { '日期': '1月3日', '销售额': 2123, '超时': 874, '成功率': 0.64534 },
+                            { '日期': '1月4日', '销售额': 4123, '超时': 853, '成功率': 0.9487423 },
+                            { '日期': '1月5日', '销售额': 3123, '超时': 757, '成功率': 0.97853 },
+                            { '日期': '1月6日', '销售额': 7123, '超时': 437, '成功率': 0.7453453 }
+                        ]
+                    }
+                }
+            }
+        })
+    </script>
+
+    <script>
+let kk = [[
+    { 'statis_day': '20190222',
+        'url_type': '1',
+        'request_times': '8888',
+        'failed_times': '2000',
+        'succeed_times': '6439',
+        'failure_rate': '0.35543',
+        'success_rate': '0.57442',
+        'within_half_second': '6439',
+        'within_one_second': '530',
+        'within_five_second': '450',
+        'outside_five_second': '80',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0.78245' },
+    { 'statis_day': '20190223',
+        'url_type': '1',
+        'request_times': '7378',
+        'failed_times': '974',
+        'succeed_times': '6439',
+        'failure_rate': '0.128',
+        'success_rate': '0.8945',
+        'within_half_second': '4573',
+        'within_one_second': '552',
+        'within_five_second': '86',
+        'outside_five_second': '45',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0.159' },
+    { 'statis_day': '20190224',
+        'url_type': '1',
+        'request_times': '9773',
+        'failed_times': '3000',
+        'succeed_times': '6439',
+        'failure_rate': '0.4125',
+        'success_rate': '0.5864',
+        'within_half_second': '8666',
+        'within_one_second': '55',
+        'within_five_second': '87',
+        'outside_five_second': '43',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0.245' },
+    { 'statis_day': '20190225',
+        'url_type': '1',
+        'request_times': '7643',
+        'failed_times': '894',
+        'succeed_times': '6439',
+        'failure_rate': '0.167',
+        'success_rate': '0.826',
+        'within_half_second': '4444',
+        'within_one_second': '1033',
+        'within_five_second': '534',
+        'outside_five_second': '123',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0.086' }],[{ 'statis_day': '20190222',
+    'url_type': '2',
+    'request_times': '9876',
+    'failed_times': '0',
+    'succeed_times': '6439',
+    'failure_rate': '0',
+    'success_rate': '1',
+    'within_half_second': '5873',
+    'within_one_second': '647',
+    'within_five_second': '786',
+    'outside_five_second': '452',
+    'target_time': '1',
+    'timeout': '0',
+    'timeout_rate': '0' },
+    { 'statis_day': '20190223',
+        'url_type': '2',
+        'request_times': '9873',
+        'failed_times': '0',
+        'succeed_times': '6439',
+        'failure_rate': '0',
+        'success_rate': '1',
+        'within_half_second': '8745',
+        'within_one_second': '324',
+        'within_five_second': '289',
+        'outside_five_second': '156',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0' },
+    { 'statis_day': '20190224',
+        'url_type': '2',
+        'request_times': '5789',
+        'failed_times': '0',
+        'succeed_times': '6439',
+        'failure_rate': '0',
+        'success_rate': '1',
+        'within_half_second': '5204',
+        'within_one_second': '89',
+        'within_five_second': '10',
+        'outside_five_second': '56',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0' },
+    { 'statis_day': '20190225',
+        'url_type': '2',
+        'request_times': '8351',
+        'failed_times': '0',
+        'succeed_times': '6439',
+        'failure_rate': '0',
+        'success_rate': '1',
+        'within_half_second': '6245',
+        'within_one_second': '895',
+        'within_five_second': '357',
+        'outside_five_second': '567',
+        'target_time': '1',
+        'timeout': '0',
+        'timeout_rate': '0' }
+]]
+
+
+
+    </script>
+
+
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<my-com imgurl="aaaaa.png" str="已力量是否" >
+
+</my-com>
+
+
+<template id="myComTemplate">
+    <style>
+        img{
+            width: 100px;
+            height: auto;
+        }
+    </style>
+    <p></p>
+    <p></p>
+
+
+    <img src="" alt="" title="照片" />
+</template>
+
+</body>
+
+
+
+
+<script>
+
+    class MyCom extends HTMLElement {
+        constructor(){
+            super()
+            let shadow = this.attachShadow({mode: "closed"})
+
+            let tem = document.getElementById('myComTemplate')
+            let content = tem.content.cloneNode(true)
+
+            content.querySelectorAll('p')[0].innerHTML = this.getAttribute('str')
+            content.querySelectorAll('p')[1].innerHTML = this.getAttribute('str')
+            content.querySelector('img').setAttribute('src', this.getAttribute('imgurl'))
+            shadow.appendChild(content)
+            console.log(this)
+        }
+
+
+    }
+
+    window.customElements.define( 'my-com', MyCom)
+
+
+
+
+
+
+</script>
+</html>

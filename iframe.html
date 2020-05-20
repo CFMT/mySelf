@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+<script>
+
+    var url = 'http://zb_test.sparta.html5.qq.com/ishare_manage_platform/api/v1.0/infos/?page=1&limit=25&keywords=&flag=&priority=&kongshi_sort=0&gatalog=&user=&city=&_=1537503738361'
+    var xmlHttp;
+    function createxmlHttpRequest(){
+        if(window.ActiveXObject){
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }else if(window.XMLHttpRequest)
+            xmlHttp=new XMLHttpRequest();
+    }
+    createxmlHttpRequest();
+    xmlHttp.open("GET",url);
+    xmlHttp.send(null);
+    xmlHttp.onreadystatechange=function(){
+        setTimeout(function(){
+            if(xmlHttp.status==200){
+               console.log(xmlHttp.responseText)
+            }else{
+                alert('fail');
+            }
+        },0)
+    }
+
+</script>
+</html>

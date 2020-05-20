@@ -5,6 +5,28 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 </head>
+<style>
+
+	/*body,html{*/
+		/*-webkit-filter: grayscale(100%);*/
+		/*-moz-filter: grayscale(100%);*/
+		/*-ms-filter: grayscale(100%);*/
+		/*-o-filter: grayscale(100%);*/
+		/*filter: grayscale(100%);*/
+		/*filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
+		/*_filter:none;*/
+	/*}*/
+
+
+	ul{
+		background: #0b93d5;
+		padding-bottom: 100px;
+	}
+	li{
+		background: #0000FF;
+		list-style-type: none;
+	}
+</style>
 <body>
 	
 	<ul>
@@ -17,18 +39,29 @@
 </body>
 <script>
 	var list = document.getElementsByTagName('li');
-	/* for( let i = 0; i < list.length; i++ ){
-		list[i].onclick = function(){
-			console.log( i );
-		}
-	}  */
-	for( var i = 0; l = list.length, i < l; i++ ){
-		list[i].onclick = ( function(i){
-			return function(){
-				console.log( i );
-			}
-		} )(i)
-	} 
+	let UL = document.getElementsByTagName('ul')[0]
+	 // for( let i = 0; i < list.length; i++ ){
+		// list[i].onclick = function(){
+		// 	console.log( i );
+		// }
+	 // }
+	// for( var i = 0; l = list.length, i < l; i++ ){
+	// 	list[i].onclick = ( function(i){
+	// 		return function(){
+	// 			console.log( i );
+	// 		}
+	// 	} )
+	// }
+
+	UL.onclick = function (e) {
+		e = e || event
+		console.log(e)
+
+	}
+
+    var patrn = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、]/im;
+    console.log(patrn.test('ksdf=hu'),'2222')
+
 	
 </script>
 </html>
