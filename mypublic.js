@@ -152,7 +152,7 @@ function getajaxpromise(url,data){
 		ajax.open("GET",url);
 		ajax.send();
 		ajax.onreadystatechange = function(){
-			if(ajax.status = 200 && ajax.readyState == 4){
+			if(ajax.status == 200 && ajax.readyState == 4){
 				success( JSON.parse( ajax.responseText) );
 			}
 		}

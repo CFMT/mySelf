@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- meta标签  自动刷新 跳转 -->
+    <!--<meta http-equiv="refresh" content="3;URL=m.html" >-->
+    <title>标签</title>
+    <style>
+        ul li{
+            padding: 10px;
+
+
+        }
+    </style>
+</head>
+<body>
+
+<!--
+
+交互实现
+less code , less bug  编码简约
+
+-->
+<ul>
+    <li>
+        meta标签<br/><br />
+        http-equiv="refresh"      //  自动刷新 跳转 <br />
+    </li>
+    <li>
+        script标签 下载和执行 都会阻塞浏览器渲染引擎  通过以下几个属性优化  <br /><br />
+        async属性： 立即请求文件，但不阻塞渲染引擎，而是文件加载完成之后阻塞渲染引擎 执行文件内容 <br />
+        defer属性： 立即请求文件，但不阻塞渲染引擎，而是解析完html之后再执行文件内容 <br />
+
+    </li>
+    <li>
+        link标签  rel属性进行预加载，提升渲染速度 <br /><br/>
+        dns-prefetch  浏览器预先进行DNS预解析并缓存、
+
+    </li>
+</ul>
+
+
+
+
+</body>
+
+</html>

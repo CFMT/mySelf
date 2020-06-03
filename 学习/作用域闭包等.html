@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="d">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作用域闭包等</title>
+</head>
+<body>
+
+</body>
+
+
+<script>
+    /////////////////////////////////变量提升
+
+    // var a = 1;
+    // a = function (){
+    //     console.log(a)
+    // }
+    // console.log(a)
+
+    // var a = 545
+
+    // m = () => {
+    //     a = 56
+    //     console.log(a,'22')
+    // }
+    // m()
+    // console.log(a, '55')
+
+    /////////////////////////////////// 闭包
+
+    let a = 3
+    function addTwo(x) {
+        let ret = x + 2
+        return ret
+    }
+    let b = addTwo(a)
+    console.log(b)
+
+
+    function fn ([a]) {
+        console.log(this,a)
+
+    }
+
+    fn.call(1,['dd=as'])
+
+
+    var num = 40;
+    let obj = {
+        num : 10,
+        fn : function (num) {
+            this.num += 5;
+            console.log(this.num,'111',this,)
+            console.log(num,'222')
+            var num = 20;
+            return function () {
+                this.num += 5
+                console.log(this.num,'333',this)
+            }
+        }
+    }
+
+    obj.fn(30)()
+
+</script>
+
+
+
+</html>

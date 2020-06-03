@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    中转页面
+</div>
+
+</body>
+
+<script>
+
+    let arr = [1,3,5,8,9, 7, 12]
+    let target = 10
+
+    arr.forEach((item, index) => {
+        let t = target - item
+        let i = arr.indexOf(t)
+        if (i > index) {
+            let tArr = [index, i]
+            console.log(tArr, 'ttt')
+            return tArr
+        }
+    })
+
+
+    let ss = new Set(['eee','rrrr','333'])
+
+    console.log ( [...ss].filter(i => i > 0))
+
+    console.log(ss.size)
+    console.log(ss.keys())
+    console.log(ss.values())
+    console.log(ss.entries())
+
+    function Person () {
+        this.name = '父亲'
+        this.fn = function(){
+            alert('我是父亲')
+        }
+    }
+
+    console.log(Person.__pr)
+
+
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 浏览器兼容</title>
+
+    <style>
+        ul li{
+            padding: 10px;
+
+
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            一、不同浏览器的标签默认的margin 和padding差异较大<br />
+            解决方案：CSS里    *{margin:0;padding:0;}<br />
+            备注：这个是最常见的也是最易解决的一个浏览器兼容性问题，几乎所有的CSS文件开头都会用通配符*来设置各个标签的内外补丁是0。
+            <br />
+        </li>
+        <li>
+
+            二、设置较小高度标签(一般小于10px)，在IE6、IE7，遨游中高度超出设置高度值<br />
+            问题表现：IE6、7和遨游里这个标签的高度不受控制，超出自己设置的高度<br />
+            解决方案：给超出高度的标签设置overflow:hidden;或者设置行高line-height小于你设置的高度<br />
+            备注：一般出现在设置小圆角背景的标签里。出现该问题原因是
+            IE8之前的浏览器都会给标签一个最小默认行高的高度，即使标签是空内容，标签的高度还是会有默认行高。
+            <br />
+
+        </li>
+
+        <li>
+            三、图片默认有间距<br />
+            问题表现：几个img标签放在一块，有些浏览器会有默认的间距，有通配符也不起作用<br />
+            解决方案：使用float属性为img布局<br />
+            备注：img标签是行内属性标签，只要不超出容器高度，img会排在一行里，使用float是比较好的选择<br />
+
+        </li>
+
+        <li>
+            四、标签最低高度设置min-height不兼容<br />
+            问题表现：min-height本身就是一个不兼容的css属性，所以设置min-height时不能兼容所有浏览器<br />
+            解决方案：如果设置一个标签最小高度为200px，需要进行设置
+            {min-height:200px; height:auto !important; height: 200px; overflow:visible;}
+
+        </li>
+    </ul>
+
+</body>
+
+<script>
+
+    console.log(document.documentElement.scrollTop)
+
+    console.log(document.body.scrollTop,'222')
+
+
+</script>
+</html>
